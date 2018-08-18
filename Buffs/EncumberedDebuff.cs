@@ -32,10 +32,12 @@ namespace Encumbrance.Buffs {
 		////////////////
 
 		public override void SetDefaults() {
+			int mytype = this.Type;
+
 			this.DisplayName.SetDefault( "Encumbered" );
 			this.Description.SetDefault( "You're weighted down" + '\n' + "More items = more burden" );
 
-			Main.debuff[ this.Type ] = true;
+			Main.debuff[mytype] = true;
 
 			if( !Main.dedServ && EncumberedDebuff.IconTex1 == null ) {
 				EncumberedDebuff.IconTex1 = EncumbranceMod.Instance.GetTexture( "Buffs/EncumberedDebuff_1" );
@@ -49,7 +51,7 @@ namespace Encumbrance.Buffs {
 					Promises.AddValidatedPromise<PlayerMovementPromiseArguments>( EncumbrancePlayer.PlayerMovementPromiseValidator, ( args ) => {
 						Player plr = Main.player[ args.Who ];
 
-						if( plr != null && plr.active ) {
+						if( plr != null && plr.active && plr.HasBuff(mytype) ) {
 							EncumberedDebuff.ApplyMovementHinderance( plr );
 						}
 						return true;

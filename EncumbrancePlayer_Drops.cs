@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 namespace Encumbrance {
 	partial class EncumbrancePlayer : ModPlayer {
 		public bool CanDropItem() {
-			return this.DropCooldown == 0;
+			return this.ItemDropCooldown == 0;
 		}
 
 
@@ -164,13 +164,15 @@ namespace Encumbrance {
 			Item item = this.player.inventory[ slot ];
 
 			if( item != null && !item.IsAir ) {
-				this.DropCooldown = mymod.Config.DropCooldown;
+				this.ItemDropCooldown = mymod.Config.DropCooldown;
 
 				if( mymod.Config.DebugInfoMode ) {
 					Main.NewText( " Dropped "+this.player.inventory[slot].Name );
 				}
 
-				PlayerItemHelpers.DropInventoryItem( this.player, slot );
+				int _;
+				PlayerItemHelpers.DropInventoryItem( this.player, slot, mymod.Config.DroppedItemNoGrabDelay, out _ );
+
 				return true;
 			}
 			return false;
@@ -179,7 +181,7 @@ namespace Encumbrance {
 		public void DropAllCarriedItems() {
 			var mymod = (EncumbranceMod)this.mod;
 
-			this.DropCooldown = mymod.Config.DropCooldown;
+			this.ItemDropCooldown = mymod.Config.DropCooldown;
 
 			for( int i = PlayerItemHelpers.VanillaInventoryHotbarSize; i < PlayerItemHelpers.VanillaInventoryMainSize; i++ ) {
 				Item item = this.player.inventory[ i ];
@@ -189,7 +191,8 @@ namespace Encumbrance {
 						Main.NewText( " Dropped " + item.Name );
 					}
 
-					PlayerItemHelpers.DropInventoryItem( this.player, i );
+					int _;
+					PlayerItemHelpers.DropInventoryItem( this.player, i, mymod.Config.DroppedItemNoGrabDelay, out _ );
 				}
 			}
 		}

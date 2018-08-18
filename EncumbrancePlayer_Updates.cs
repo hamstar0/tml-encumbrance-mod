@@ -18,8 +18,8 @@ namespace Encumbrance {
 				DebugHelpers.Print( "Encumbrance", "Capacity: " + this.GetCurrentCapacity() + ", Encumbrance: " + this.GaugeEncumbrance(), 20 );
 			}
 
-			if( this.DropCooldown > 0 ) {
-				this.DropCooldown--;
+			if( this.ItemDropCooldown > 0 ) {
+				this.ItemDropCooldown--;
 			}
 			if( this.ItemUseCooldown > 0 ) {
 				this.ItemUseCooldown--;
@@ -45,7 +45,7 @@ namespace Encumbrance {
 
 
 		public override void PostUpdateRunSpeeds() {
-			if( !this.player.dead ) { return; }
+			if( this.player.dead ) { return; }
 
 			var mymod = (EncumbranceMod)this.mod;
 

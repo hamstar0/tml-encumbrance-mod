@@ -1,7 +1,7 @@
 author = hamstar
 version = 1.0.0
 displayName = Encumbrance
-modReferences = HamstarHelpers@2.0.3
+modReferences = HamstarHelpers@2.0.3.1
 buildIgnore = *.csproj, *.user, *.bat, obj\*, bin\*, .vs\*, .git\*
 languageVersion = 6
 homepage = https://forums.terraria.org/index.php?threads/capitalism.52930/

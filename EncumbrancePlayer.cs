@@ -30,17 +30,27 @@ namespace Encumbrance {
 		private bool IsDashing = false;
 		private bool IsMounted = false;
 		private int ItemUseCooldown = 0;
-		private int DropCooldown = 0;
+		private int ItemDropCooldown = 0;
 
 
 
 		////////////////
 
 		public override bool CloneNewInstances { get { return false; } }
-
+		
+		public override void clientClone( ModPlayer clone ) {
+			base.clientClone( clone );
+			var myclone = (EncumbrancePlayer)clone;
+			
+			myclone.IsDashing = this.IsDashing;
+			myclone.IsJumping = this.IsJumping;
+			myclone.IsMounted = this.IsMounted;
+			myclone.ItemUseCooldown = this.ItemUseCooldown;
+			myclone.ItemDropCooldown = this.ItemDropCooldown;
+		}
 
 		////////////////
-		
+
 		public int GetCurrentCapacity() {
 			var mymod = EncumbranceMod.Instance;
 

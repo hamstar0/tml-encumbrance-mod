@@ -26,14 +26,16 @@ namespace Encumbrance {
 		public int DropOnSwimHold = 0;
 		public int DropOnJump = 1;
 		public int DropOnJumpHold = 0;
-		public int DropOnGrapple = 1;
-		public int DropOnDash = 1;
+		public int DropOnGrapple = 5;
+		public int DropOnDash = 2;
 		public int DropOnHurt = 1;
 		public int DropOnMount = -1;
 		public int DropOnDeath = -1;
 
 		public int DropOnDamageMinimum = 25;
 		public int DropPerDamageAmount = 50;
+
+		public int DroppedItemNoGrabDelay = 60 * 4;	//4s
 
 		public float EncumbrancePassiveDebuffScalePerItemSlot = 1f / 40f;
 

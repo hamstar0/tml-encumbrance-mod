@@ -15,10 +15,14 @@ namespace Encumbrance {
 			if( layer_idx == -1 ) { return; }
 
 			GameInterfaceDrawMethod inv_over = delegate {
-				if( !Main.playerInventory ) { return true; }
+				if( !Main.playerInventory ) {
+					return true;
+				}
 
 				var mymod = EncumbranceMod.Instance;
 				Player plr = Main.LocalPlayer;
+				var myplr = plr.GetModPlayer<EncumbrancePlayer>();
+				int capacity = myplr.GetCurrentCapacity();
 
 				float inv_scale = 0.85f;
 				if( (plr.chest != -1 || Main.npcShop > 0) && !Main.recBigList ) {
@@ -29,7 +33,7 @@ namespace Encumbrance {
 					for( int j = 0; j < 5; j++ ) {
 						int idx = i + j * 10;
 
-						if( idx < mymod.Config.CarryCapacityBase ) {
+						if( idx < capacity ) {
 							continue;
 						}
 

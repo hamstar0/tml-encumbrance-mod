@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="API.cs" />
     <Compile Include="API_Call.cs" />
+    <Compile Include="Buffs\EncumberedDebuff.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="EncumbranceMod.cs" />
     <Compile Include="EncumbranceMod_Draw.cs" />
@@ -74,6 +75,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Buffs\EncumberedDebuff.png" />
+    <Content Include="Buffs\EncumberedDebuff_1.png" />
+    <Content Include="Buffs\EncumberedDebuff_2.png" />
+    <Content Include="Buffs\EncumberedDebuff_3.png" />
+    <Content Include="Buffs\EncumberedDebuff_4.png" />
     <Content Include="build.txt" />
     <Content Include="description.txt" />
     <Content Include="ShadowBox.png" />

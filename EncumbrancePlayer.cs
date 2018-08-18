@@ -1,4 +1,5 @@
 ﻿using HamstarHelpers.Helpers.PlayerHelpers;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -55,7 +56,7 @@ namespace Encumbrance {
 			if( !this.player.dead ) { return; }
 
 			var mymod = (EncumbranceMod)this.mod;
-			
+
 			// Is sprinting?
 			/*if( !player.mount.Active && player.velocity.Y == 0f && player.dashDelay >= 0 ) {
 				float runMin = PlayerMovementHelpers.MinimumRunSpeed( player );
@@ -103,6 +104,50 @@ namespace Encumbrance {
 			} else if( this.IsJumping ) {
 				this.IsJumping = false;
 			}
+		}
+
+
+		////////////////
+		
+		public int GetCurrentCapacity() {
+			var mymod = EncumbranceMod.Instance;
+
+			if( this.player.pulley ) {
+				return mymod.Config.CarryCapacityOnPulley;
+			}
+			if( this.player.mount.Active ) {
+				switch( this.player.mount.Type ) {
+				case MountID.MineCart:
+				case MountID.MineCartWood:
+				case MountID.MineCartMech:
+					return mymod.Config.CarryCapacityOnMinecart;
+				}
+			}
+			return mymod.Config.CarryCapacityBase;
+		}
+
+
+		public float GaugeEncumbrance() {
+			var mymod = EncumbranceMod.Instance;
+
+			int capacity = this.GetCurrentCapacity();
+			int inv_max = PlayerItemHelpers.VanillaInventoryHotbarSize + PlayerItemHelpers.VanillaInventoryMainSize;
+			int max_load = inv_max - capacity;
+			int load = 0;
+
+			if( max_load == 0 ) {
+				return 0f;
+			}
+
+			for( int i = capacity; i < inv_max; i++ ) {
+				Item item = this.player.inventory[i];
+
+				if( item != null && !item.IsAir ) {
+					load++;
+				}
+			}
+
+			return (float)load / (float)max_load;
 		}
 	}
 }

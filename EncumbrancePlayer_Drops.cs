@@ -1,21 +1,11 @@
 ﻿using HamstarHelpers.Helpers.PlayerHelpers;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 
 namespace Encumbrance {
 	partial class EncumbrancePlayer : ModPlayer {
-		public bool CanDrop() {
-			if( this.player.mount.Active ) {
-				switch( this.player.mount.Type ) {
-				case MountID.MineCart:
-				case MountID.MineCartWood:
-				case MountID.MineCartMech:
-					return false;
-				}
-			}
-
+		public bool CanDropItem() {
 			return this.DropCooldown == 0;
 		}
 
@@ -23,49 +13,49 @@ namespace Encumbrance {
 		////////////////
 
 		public void RunItemUseEffect() {
-			if( !this.CanDrop() ) { return; }
+			if( !this.CanDropItem() ) { return; }
 
 			var mymod = (EncumbranceMod)this.mod;
 			this.DropCarriedItems( mymod.Config.DropOnItemUse );
 		}
 
 		public void RunDashEffect() {
-			if( !this.CanDrop() ) { return; }
+			if( !this.CanDropItem() ) { return; }
 
 			var mymod = (EncumbranceMod)this.mod;
 			this.DropCarriedItems( mymod.Config.DropOnDash );
 		}
 
 		public void RunSwimEffect() {
-			if( !this.CanDrop() ) { return; }
+			if( !this.CanDropItem() ) { return; }
 
 			var mymod = (EncumbranceMod)this.mod;
 			this.DropCarriedItems( mymod.Config.DropOnSwim );
 		}
 		
 		public void RunSwimHoldEffect() {
-			if( !this.CanDrop() ) { return; }
+			if( !this.CanDropItem() ) { return; }
 
 			var mymod = (EncumbranceMod)this.mod;
 			this.DropCarriedItems( mymod.Config.DropOnSwimHold );
 		}
 
 		public void RunJumpEffect() {
-			if( !this.CanDrop() ) { return; }
+			if( !this.CanDropItem() ) { return; }
 
 			var mymod = (EncumbranceMod)this.mod;
 			this.DropCarriedItems( mymod.Config.DropOnJump );
 		}
 		
 		public void RunJumpHoldEffect() {
-			if( !this.CanDrop() ) { return; }
+			if( !this.CanDropItem() ) { return; }
 
 			var mymod = (EncumbranceMod)this.mod;
 			this.DropCarriedItems( mymod.Config.DropOnJumpHold );
 		}
 
 		public void RunGrappleEffect() {
-			if( !this.CanDrop() ) { return; }
+			if( !this.CanDropItem() ) { return; }
 
 			var mymod = (EncumbranceMod)this.mod;
 			this.DropCarriedItems( mymod.Config.DropOnGrapple );
@@ -123,6 +113,8 @@ namespace Encumbrance {
 		}
 		
 		public void DropAllCarriedItems() {
+			var mymod = (EncumbranceMod)this.mod;
+
 			this.DropCooldown = mymod.Config.DropCooldown;
 
 			for( int i = PlayerItemHelpers.VanillaInventoryHotbarSize; i < PlayerItemHelpers.VanillaInventoryMainSize; i++ ) {

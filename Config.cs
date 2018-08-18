@@ -15,10 +15,8 @@ namespace Encumbrance {
 		public bool DebugInfoMode = true;
 
 		public int CarryCapacityBase = 10;
-		public int CarryCapacityOnRope = 40;
-		public int CarryCapacityOnMinecart = 40;
-		public int CoinCapacityBase = 4;
-		public int AmmoCapacityBase = 4;
+		public int CarryCapacityOnPulley = 50;
+		public int CarryCapacityOnMinecart = 50;
 
 		public int DropCooldown = 90;   //1.5s
 		public bool DropAlwaysAtLeastOf = false;
@@ -37,10 +35,7 @@ namespace Encumbrance {
 		public int DropOnDamageMinimum = 25;
 		public int DropPerDamageAmount = 50;
 
-		public bool AlsoDropArmor = false;
-		public bool AlsoDropAccessories = false;
-		public bool AlsoDropVanity = false;
-		public bool AlsoDropMisc = false;
+		public float EncumbrancePassiveDebuffScalePerItemSlot = 1f / 40f;
 
 
 

@@ -29,7 +29,7 @@ namespace Encumbrance {
 				AutoloadSounds = true
 			};
 
-			string filename = "Capitalism Config.json";
+			string filename = "Encumbrance Config.json";
 			this.ConfigJson = new JsonConfig<EncumbranceConfigData>( filename, ConfigurationDataBase.RelativePath, new EncumbranceConfigData() );
 		}
 

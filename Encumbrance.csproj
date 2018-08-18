@@ -41,6 +41,7 @@
     <Compile Include="EncumbranceMod.cs" />
     <Compile Include="EncumbranceMod_Draw.cs" />
     <Compile Include="EncumbranceMod_Meta.cs" />
+    <Compile Include="EncumbrancePlayer_Updates.cs" />
     <Compile Include="EncumbrancePlayer_Interactions.cs" />
     <Compile Include="EncumbrancePlayer_Drops.cs" />
     <Compile Include="EncumbrancePlayer.cs" />

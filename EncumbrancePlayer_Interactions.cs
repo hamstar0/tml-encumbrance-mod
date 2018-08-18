@@ -7,11 +7,14 @@ namespace Encumbrance {
 	partial class EncumbrancePlayer : ModPlayer {
 		public override bool PreItemCheck() {
 			bool prechecked = base.PreItemCheck();
-			Item item = this.player.inventory[this.player.selectedItem];
+			Item item = this.player.inventory[ this.player.selectedItem ];
 
 			if( item != null && !item.IsAir && !this.player.noItems ) {
 				if( this.player.controlUseItem && this.player.itemTime <= 1 ) {
-					this.ItemUseDrainDuration = 36;
+					if( this.ItemUseCooldown == 0 ) {
+						this.RunItemUseEffect();
+						this.ItemUseCooldown = 36;
+					}
 				}
 			}
 

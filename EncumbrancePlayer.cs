@@ -1,5 +1,4 @@
 ﻿using HamstarHelpers.Helpers.PlayerHelpers;
-using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,7 +8,8 @@ namespace Encumbrance {
 		private bool IsJumping = false;
 		private bool IsDashing = false;
 		private bool IsMounted = false;
-		private int ItemUseDrainDuration = 0;
+		private int ItemUseCooldown = 0;
+		private int DropCooldown = 0;
 
 
 
@@ -25,13 +25,11 @@ namespace Encumbrance {
 				return;
 			}
 
-			if( this.ItemUseDrainDuration > 0 ) {
-				this.ItemUseDrainDuration--;
-
-				Item curr_item = this.player.inventory[ this.player.selectedItem ];
-				if( curr_item != null && !curr_item.IsAir ) {
-					this.RunItemUseEffect();
-				}
+			if( this.DropCooldown > 0 ) {
+				this.DropCooldown--;
+			}
+			if( this.ItemUseCooldown > 0 ) {
+				this.ItemUseCooldown--;
 			}
 
 			switch( this.player.mount.Type ) {

@@ -12,7 +12,7 @@ namespace Encumbrance {
 
 		public string VersionSinceUpdate = "";
 
-		public bool DebugInfoMode = true;
+		public bool DebugInfoMode = false;
 
 		public int CarryCapacityBase = 10;
 		public int CarryCapacityOnPulley = 50;

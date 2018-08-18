@@ -37,7 +37,7 @@ namespace Encumbrance {
 							continue;
 						}
 
-						Texture2D tex = Main.inventoryBackTexture;
+						Texture2D tex = this.ShadowBox;
 						int pos_x = (int)( 20f + ((float)i * 56f) * inv_scale );
 						int pos_y = (int)( 20f + ((float)j * 56f) * inv_scale );
 						var pos = new Vector2( pos_x, pos_y );

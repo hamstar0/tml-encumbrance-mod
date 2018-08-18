@@ -16,7 +16,6 @@ namespace Encumbrance {
 	partial class EncumbrancePlayer : ModPlayer {
 		public static PromiseValidator PlayerMovementPromiseValidator;
 		private static object PlayerMovementPromiseValidatorKey;
-		private static PlayerMovementPromiseArguments PlayerMovementPromiseArgs;
 
 		static EncumbrancePlayer() {
 			EncumbrancePlayer.PlayerMovementPromiseValidatorKey = new object();

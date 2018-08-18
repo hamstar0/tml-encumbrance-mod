@@ -1,7 +1,6 @@
-﻿using HamstarHelpers.Helpers.PlayerHelpers;
+﻿using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.PlayerHelpers;
 using HamstarHelpers.Services.Promises;
-using Stamina.Buffs;
-using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,6 +10,12 @@ namespace Encumbrance {
 		public override void PreUpdate() {
 			if( this.player.dead ) {
 				return;
+			}
+
+			var mymod = (EncumbranceMod)this.mod;
+
+			if( mymod.Config.DebugInfoMode ) {
+				DebugHelpers.Print( "Encumbrance", "Capacity: " + this.GetCurrentCapacity() + ", Encumbrance: " + this.GaugeEncumbrance(), 20 );
 			}
 
 			if( this.DropCooldown > 0 ) {

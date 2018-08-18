@@ -16,6 +16,12 @@ namespace Encumbrance {
 			if( !this.CanDropItem() ) { return; }
 
 			var mymod = (EncumbranceMod)this.mod;
+			if( mymod.Config.DropOnItemUse == 0 ) { return; }
+
+			if( mymod.Config.DebugInfoMode ) {
+				Main.NewText( " RunItemUseEffect" );
+			}
+
 			this.DropCarriedItems( mymod.Config.DropOnItemUse );
 		}
 
@@ -23,6 +29,12 @@ namespace Encumbrance {
 			if( !this.CanDropItem() ) { return; }
 
 			var mymod = (EncumbranceMod)this.mod;
+			if( mymod.Config.DropOnDash == 0 ) { return; }
+
+			if( mymod.Config.DebugInfoMode ) {
+				Main.NewText( " RunDashEffect" );
+			}
+
 			this.DropCarriedItems( mymod.Config.DropOnDash );
 		}
 
@@ -30,6 +42,12 @@ namespace Encumbrance {
 			if( !this.CanDropItem() ) { return; }
 
 			var mymod = (EncumbranceMod)this.mod;
+			if( mymod.Config.DropOnSwim == 0 ) { return; }
+
+			if( mymod.Config.DebugInfoMode ) {
+				Main.NewText( " RunSwimEffect" );
+			}
+
 			this.DropCarriedItems( mymod.Config.DropOnSwim );
 		}
 		
@@ -37,6 +55,12 @@ namespace Encumbrance {
 			if( !this.CanDropItem() ) { return; }
 
 			var mymod = (EncumbranceMod)this.mod;
+			if( mymod.Config.DropOnSwimHold == 0 ) { return; }
+
+			if( mymod.Config.DebugInfoMode ) {
+				Main.NewText( " RunSwimHoldEffect" );
+			}
+
 			this.DropCarriedItems( mymod.Config.DropOnSwimHold );
 		}
 
@@ -44,6 +68,12 @@ namespace Encumbrance {
 			if( !this.CanDropItem() ) { return; }
 
 			var mymod = (EncumbranceMod)this.mod;
+			if( mymod.Config.DropOnJump == 0 ) { return; }
+
+			if( mymod.Config.DebugInfoMode ) {
+				Main.NewText( " RunJumpEffect" );
+			}
+
 			this.DropCarriedItems( mymod.Config.DropOnJump );
 		}
 		
@@ -51,6 +81,12 @@ namespace Encumbrance {
 			if( !this.CanDropItem() ) { return; }
 
 			var mymod = (EncumbranceMod)this.mod;
+			if( mymod.Config.DropOnJumpHold == 0 ) { return; }
+
+			if( mymod.Config.DebugInfoMode ) {
+				Main.NewText( " RunJumpHoldEffect" );
+			}
+
 			this.DropCarriedItems( mymod.Config.DropOnJumpHold );
 		}
 
@@ -58,12 +94,24 @@ namespace Encumbrance {
 			if( !this.CanDropItem() ) { return; }
 
 			var mymod = (EncumbranceMod)this.mod;
+			if( mymod.Config.DropOnGrapple == 0 ) { return; }
+
+			if( mymod.Config.DebugInfoMode ) {
+				Main.NewText( " RunGrappleEffect" );
+			}
+
 			this.DropCarriedItems( mymod.Config.DropOnGrapple );
 		}
 
 
 		public void RunHurtEffect( int damage ) {
 			var mymod = (EncumbranceMod)this.mod;
+			if( mymod.Config.DropPerDamageAmount == 0 ) { return; }
+
+			if( mymod.Config.DebugInfoMode ) {
+				Main.NewText( " RunHurtEffect" );
+			}
+
 			if( damage >= mymod.Config.DropOnDamageMinimum ) {
 				this.DropCarriedItem();
 			} else {
@@ -73,11 +121,23 @@ namespace Encumbrance {
 
 		public void RunDeathEffect() {
 			var mymod = (EncumbranceMod)this.mod;
+			if( mymod.Config.DropOnDeath == 0 ) { return; }
+
+			if( mymod.Config.DebugInfoMode ) {
+				Main.NewText( " RunDeathEffect" );
+			}
+
 			this.DropCarriedItems( mymod.Config.DropOnDeath );
 		}
 
 		public void RunMountEffect() {
 			var mymod = (EncumbranceMod)this.mod;
+			if( mymod.Config.DropOnMount == 0 ) { return; }
+
+			if( mymod.Config.DebugInfoMode ) {
+				Main.NewText( " RunMountEffect" );
+			}
+
 			this.DropCarriedItems( mymod.Config.DropOnMount );
 		}
 
@@ -106,6 +166,10 @@ namespace Encumbrance {
 			if( item != null && !item.IsAir ) {
 				this.DropCooldown = mymod.Config.DropCooldown;
 
+				if( mymod.Config.DebugInfoMode ) {
+					Main.NewText( " Dropped "+this.player.inventory[slot].Name );
+				}
+
 				PlayerItemHelpers.DropInventoryItem( this.player, slot );
 				return true;
 			}
@@ -121,6 +185,10 @@ namespace Encumbrance {
 				Item item = this.player.inventory[ i ];
 
 				if( item != null && !item.IsAir ) {
+					if( mymod.Config.DebugInfoMode ) {
+						Main.NewText( " Dropped " + item.Name );
+					}
+
 					PlayerItemHelpers.DropInventoryItem( this.player, i );
 				}
 			}

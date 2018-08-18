@@ -14,6 +14,8 @@ namespace Encumbrance {
 
 		public bool DebugInfoMode = false;
 
+		public float BurdenedItemSlotOverlayOpacity = 0.5f;
+
 		public int CarryCapacityBase = 10;
 		public int CarryCapacityOnPulley = 50;
 		public int CarryCapacityOnMinecart = 50;

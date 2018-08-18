@@ -20,6 +20,10 @@ namespace Encumbrance {
 				}
 
 				var mymod = EncumbranceMod.Instance;
+				if( mymod.Config.BurdenedItemSlotOverlayOpacity == 0f ) {
+					return true;
+				}
+
 				Player plr = Main.LocalPlayer;
 				var myplr = plr.GetModPlayer<EncumbrancePlayer>();
 				int capacity = myplr.GetCurrentCapacity();
@@ -41,8 +45,9 @@ namespace Encumbrance {
 						int pos_x = (int)( 20f + ((float)i * 56f) * inv_scale );
 						int pos_y = (int)( 20f + ((float)j * 56f) * inv_scale );
 						var pos = new Vector2( pos_x, pos_y );
+						Color color = Color.White * mymod.Config.BurdenedItemSlotOverlayOpacity;
 						
-						Main.spriteBatch.Draw( tex, pos, null, Color.White * 0.5f, 0f, default( Vector2 ), inv_scale, SpriteEffects.None, 1f );
+						Main.spriteBatch.Draw( tex, pos, null, color, 0f, default( Vector2 ), inv_scale, SpriteEffects.None, 1f );
 					}
 				}
 

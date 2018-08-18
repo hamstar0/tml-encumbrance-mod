@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using Encumbrance.Buffs;
+using HamstarHelpers.Helpers.DebugHelpers;
 using HamstarHelpers.Helpers.PlayerHelpers;
 using HamstarHelpers.Services.Promises;
 using Terraria.ID;
@@ -13,9 +14,14 @@ namespace Encumbrance {
 			}
 
 			var mymod = (EncumbranceMod)this.mod;
+			float encumbrance = this.GaugeEncumbrance();
 
 			if( mymod.Config.DebugInfoMode ) {
-				DebugHelpers.Print( "Encumbrance", "Capacity: " + this.GetCurrentCapacity() + ", Encumbrance: " + this.GaugeEncumbrance(), 20 );
+				DebugHelpers.Print( "Encumbrance", "Capacity: " + this.GetCurrentCapacity() + ", Encumbrance: " + encumbrance, 20 );
+			}
+
+			if( encumbrance > 0f ) {
+				this.player.AddBuff( this.mod.BuffType<EncumberedDebuff>(), 3 );
 			}
 
 			if( this.ItemDropCooldown > 0 ) {

@@ -1,9 +1,5 @@
-# Capitalism
+# Encumbrance
 
-Town NPCs are now stingy and adhere to the rule of supply & demand. Popular items now (temporarily) get their prices marked up.
-
-* Formula for item markup (b=base value, t=total purchases):
-	b + ( (b * t)^0.8 ) / 50
-* Config file in Documents/My Games/Terraria/ModLoader/Mod Configs/Capitalism Config.json
+Holding items outside of a player's hotbar is a burden. Jumping, attacking, grappling, or mounting causes items to randomly drop on the ground. Other configurable effects can be applied. Carrying capacity can also be configured.
 
 https://forums.terraria.org/index.php?threads/capitalism.52930/

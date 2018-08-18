@@ -23,12 +23,19 @@ namespace Encumbrance {
 		public int DropCooldown = 90;   //1.5s
 		public bool DropAlwaysAtLeastOf = false;
 
-		public int DropOnAttack = 1;
+		public int DropOnItemUse = 1;
+		public int DropOnSwim = 0;
+		public int DropOnSwimHold = 0;
 		public int DropOnJump = 1;
+		public int DropOnJumpHold = 0;
 		public int DropOnGrapple = 1;
+		public int DropOnDash = 1;
 		public int DropOnHurt = 1;
-		public int DropOnMount = 30;
-		public int DropOnDeath = 30;
+		public int DropOnMount = -1;
+		public int DropOnDeath = -1;
+
+		public int DropOnDamageMinimum = 25;
+		public int DropPerDamageAmount = 50;
 
 		public bool AlsoDropArmor = false;
 		public bool AlsoDropAccessories = false;

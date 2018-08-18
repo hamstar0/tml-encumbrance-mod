@@ -10,10 +10,10 @@ v2
 	-	Right Holster (added hotbar slot)
 	-	Bandelier (added hotbar slot)
 v1
--	Remove emcumbrance limits when in a minecart or on a rope
+-	Add encumerance debuff when loaded with items
+-	Remove encumbrance limits when in a minecart or on a rope
+
 -	Eject all burden items on mount or death
 -	Eject burden items at random on jump, attack, grapple
--	Implement ejecting items from inventory
 -	Render blocked inventory
-
 -	Setup project

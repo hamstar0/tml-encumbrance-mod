@@ -4,4 +4,4 @@ displayName = Encumbrance
 modReferences = HamstarHelpers@2.0.3.1
 buildIgnore = *.csproj, *.user, *.bat, obj\*, bin\*, .vs\*, .git\*
 languageVersion = 6
-homepage = https://forums.terraria.org/index.php?threads/capitalism.52930/
+homepage = https://forums.terraria.org/index.php?threads/encumbrance-inventory-use-burdens-your-movement.71971/

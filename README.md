@@ -1,5 +1,5 @@
 # Encumbrance
 
-Holding items outside of a player's hotbar is a burden. Jumping, attacking, grappling, or mounting causes items to randomly drop on the ground. Other configurable effects can be applied. Carrying capacity can also be configured.
+Carrying items beyond your player's hotbar is now a burden to movement. Jumping, attacking, grappling, or mounting causes items to randomly drop on the ground. Additionally, movement will become increasingly sluggish with more item slots being uses. Other configurable effects can be applied. Carrying capacity can also be configured.
 
-https://forums.terraria.org/index.php?threads/capitalism.52930/
+https://forums.terraria.org/index.php?threads/encumbrance-inventory-use-burdens-your-movement.71971/

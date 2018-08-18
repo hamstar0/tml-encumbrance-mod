@@ -83,6 +83,7 @@
     <Content Include="Buffs\EncumberedDebuff_4.png" />
     <Content Include="build.txt" />
     <Content Include="description.txt" />
+    <Content Include="icon.png" />
     <Content Include="ShadowBox.png" />
   </ItemGroup>
   <ItemGroup>

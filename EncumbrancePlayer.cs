@@ -32,9 +32,15 @@ namespace Encumbrance {
 		private int ItemUseCooldown = 0;
 		private int ItemDropCooldown = 0;
 
+		public bool Encumberable { get; private set; }
+
 
 
 		////////////////
+
+		public override void Initialize() {
+			this.Encumberable = true;
+		}
 
 		public override bool CloneNewInstances { get { return false; } }
 		
@@ -51,8 +57,23 @@ namespace Encumbrance {
 
 		////////////////
 
+		public void EnableEncumbrance() {
+			this.Encumberable = true;
+		}
+
+		public void DisableEncumbrance() {
+			this.Encumberable = false;
+		}
+
+
+		////////////////
+
 		public int GetCurrentCapacity() {
 			var mymod = EncumbranceMod.Instance;
+
+			if( !this.Encumberable ) {
+				return PlayerItemHelpers.VanillaInventoryHotbarSize + PlayerItemHelpers.VanillaInventoryMainSize;
+			}
 
 			if( this.player.pulley ) {
 				return mymod.Config.CarryCapacityOnPulley;

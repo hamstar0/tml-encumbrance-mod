@@ -4,7 +4,6 @@ using System;
 
 namespace Encumbrance {
 	public class EncumbranceConfigData : ConfigurationDataBase {
-		public readonly static Version ConfigVersion = new Version( 1, 0, 0 );
 		public readonly static string ConfigFileName = "Encumbrance Config.json";
 
 
@@ -50,12 +49,12 @@ namespace Encumbrance {
 			var vers_since = this.VersionSinceUpdate != "" ?
 				new Version( this.VersionSinceUpdate ) :
 				new Version();
-
-			if( vers_since >= EncumbranceConfigData.ConfigVersion ) {
+			
+			if( vers_since >= EncumbranceMod.Instance.Version ) {
 				return false;
 			}
 
-			this.VersionSinceUpdate = EncumbranceConfigData.ConfigVersion.ToString();
+			this.VersionSinceUpdate = EncumbranceMod.Instance.Version.ToString();
 
 			return true;
 		}

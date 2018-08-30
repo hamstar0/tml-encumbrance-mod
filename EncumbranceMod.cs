@@ -51,7 +51,7 @@ namespace Encumbrance {
 			}
 
 			if( this.Config.UpdateToLatestVersion() ) {
-				LogHelpers.Log( "Encumbrance updated to " + EncumbranceConfigData.ConfigVersion.ToString() );
+				LogHelpers.Log( "Encumbrance updated to " + this.Version.ToString() );
 				this.ConfigJson.SaveFile();
 			}
 		}

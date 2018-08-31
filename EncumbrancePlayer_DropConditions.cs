@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace Encumbrance {
 	partial class EncumbrancePlayer : ModPlayer {
 		public bool CanDropItem() {
-			return this.ItemDropCooldown == 0;
+			return this.ItemDropCooldown == 0 && this.Encumberable;
 		}
 
 

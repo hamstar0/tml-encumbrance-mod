@@ -29,9 +29,9 @@ namespace Encumbrance {
 				int capacity = myplr.GetCurrentCapacity();
 
 				float inv_scale = 0.85f;
-				if( (plr.chest != -1 || Main.npcShop > 0) && !Main.recBigList ) {
-					inv_scale = 0.755f;
-				}
+				//if( (plr.chest != -1 || Main.npcShop > 0) && !Main.recBigList ) {
+				//	inv_scale = 0.755f;
+				//}
 
 				for( int i = 0; i < 10; i++ ) {
 					for( int j = 0; j < 5; j++ ) {

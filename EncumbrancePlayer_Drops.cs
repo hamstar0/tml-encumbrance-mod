@@ -34,21 +34,23 @@ namespace Encumbrance {
 			if( Main.netMode == 2 ) { return false; }
 
 			var mymod = (EncumbranceMod)this.mod;
-			
-			int blocked = (PlayerItemHelpers.VanillaInventoryHotbarSize + PlayerItemHelpers.VanillaInventoryMainSize) - mymod.Config.CarryCapacityBase;
-			int slot = (int)(Main.rand.NextFloat() * blocked) + PlayerItemHelpers.VanillaInventoryHotbarSize;
+
+			int inv_max = PlayerItemHelpers.VanillaInventoryHotbarSize + PlayerItemHelpers.VanillaInventoryMainSize;
+			int encumb_start_slot = this.GetCurrentCapacity();
+			int encumb_span = inv_max - encumb_start_slot;
+			int slot = (int)(Main.rand.NextFloat() * (float)encumb_span) + encumb_start_slot;
 
 			Item item = this.player.inventory[ slot ];
 
 			if( item != null && !item.IsAir ) {
+				int _;
+				PlayerItemHelpers.DropInventoryItem( this.player, slot, mymod.Config.DroppedItemNoGrabDelay, out _ );
+
 				this.ItemDropCooldown = mymod.Config.DropCooldown;
 
 				if( mymod.Config.DebugInfoMode ) {
-					Main.NewText( " Dropped "+this.player.inventory[slot].Name );
+					Main.NewText( " Dropped " + item.Name + "("+slot+")" );
 				}
-
-				int _;
-				PlayerItemHelpers.DropInventoryItem( this.player, slot, mymod.Config.DroppedItemNoGrabDelay, out _ );
 
 				return true;
 			}

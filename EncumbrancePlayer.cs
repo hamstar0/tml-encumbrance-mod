@@ -26,6 +26,8 @@ namespace Encumbrance {
 
 		////////////////
 
+		private int QueuedDropAmount = 0;
+
 		private bool IsJumping = false;
 		private bool IsDashing = false;
 		private bool IsMounted = false;

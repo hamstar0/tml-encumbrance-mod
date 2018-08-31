@@ -23,7 +23,7 @@ namespace Encumbrance {
 			if( encumbrance > 0f ) {
 				this.player.AddBuff( this.mod.BuffType<EncumberedDebuff>(), 3 );
 			}
-
+			
 			if( this.ItemDropCooldown > 0 ) {
 				this.ItemDropCooldown--;
 			}
@@ -47,7 +47,14 @@ namespace Encumbrance {
 				}
 				break;
 			}
+
+			if( this.QueuedDropAmount != 0 ) {
+				this.DropCarriedItems( this.QueuedDropAmount );
+				this.QueuedDropAmount = 0;
+			}
 		}
+
+		////////////////
 
 
 		public override void PostUpdateRunSpeeds() {

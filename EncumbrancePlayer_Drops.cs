@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.PlayerHelpers;
+﻿using HamstarHelpers.Helpers.Players;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -35,16 +35,15 @@ namespace Encumbrance {
 
 			var mymod = (EncumbranceMod)this.mod;
 
-			int inv_max = PlayerItemHelpers.VanillaInventoryHotbarSize + PlayerItemHelpers.VanillaInventoryMainSize;
-			int encumb_start_slot = this.GetCurrentCapacity();
-			int encumb_span = inv_max - encumb_start_slot;
-			int slot = (int)(Main.rand.NextFloat() * (float)encumb_span) + encumb_start_slot;
+			int invMax = PlayerItemHelpers.VanillaInventoryHotbarSize + PlayerItemHelpers.VanillaInventoryMainSize;
+			int encumbStartSlot = this.GetCurrentCapacity();
+			int encumbSpan = invMax - encumbStartSlot;
+			int slot = (int)(Main.rand.NextFloat() * (float)encumbSpan) + encumbStartSlot;
 
 			Item item = this.player.inventory[ slot ];
 
 			if( item != null && !item.IsAir ) {
-				int _;
-				PlayerItemHelpers.DropInventoryItem( this.player, slot, mymod.Config.DroppedItemNoGrabDelay, out _ );
+				PlayerItemHelpers.DropInventoryItem( this.player, slot, mymod.Config.DroppedItemNoGrabDelay );
 
 				this.ItemDropCooldown = mymod.Config.DropCooldown;
 
@@ -72,8 +71,7 @@ namespace Encumbrance {
 						Main.NewText( " Dropped " + item.Name );
 					}
 
-					int _;
-					PlayerItemHelpers.DropInventoryItem( this.player, i, mymod.Config.DroppedItemNoGrabDelay, out _ );
+					PlayerItemHelpers.DropInventoryItem( this.player, i, mymod.Config.DroppedItemNoGrabDelay );
 				}
 			}
 		}

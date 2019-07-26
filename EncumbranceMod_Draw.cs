@@ -1,7 +1,6 @@
-﻿using HamstarHelpers.Helpers.DebugHelpers;
+﻿using HamstarHelpers.Helpers.TModLoader;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
@@ -11,10 +10,10 @@ using Terraria.UI;
 namespace Encumbrance {
 	partial class EncumbranceMod : Mod {
 		public override void ModifyInterfaceLayers( List<GameInterfaceLayer> layers ) {
-			int layer_idx = layers.FindIndex( layer => layer.Name.Equals( "Vanilla: Inventory" ) );
-			if( layer_idx == -1 ) { return; }
+			int layerIdx = layers.FindIndex( layer => layer.Name.Equals( "Vanilla: Inventory" ) );
+			if( layerIdx == -1 ) { return; }
 
-			GameInterfaceDrawMethod inv_over = delegate {
+			GameInterfaceDrawMethod invOver = delegate {
 				if( !Main.playerInventory ) {
 					return true;
 				}
@@ -24,11 +23,10 @@ namespace Encumbrance {
 					return true;
 				}
 
-				Player plr = Main.LocalPlayer;
-				var myplr = plr.GetModPlayer<EncumbrancePlayer>();
-				int capacity = myplr.GetCurrentCapacity();
+				var myplayer = (EncumbrancePlayer)TmlHelpers.SafelyGetModPlayer( Main.LocalPlayer, this, "EncumbrancePlayer" );
+				int capacity = myplayer.GetCurrentCapacity();
 
-				float inv_scale = 0.85f;
+				float invScale = 0.85f;
 				//if( (plr.chest != -1 || Main.npcShop > 0) && !Main.recBigList ) {
 				//	inv_scale = 0.755f;
 				//}
@@ -42,21 +40,21 @@ namespace Encumbrance {
 						}
 
 						Texture2D tex = this.ShadowBox;
-						int pos_x = (int)( 20f + ((float)i * 56f) * inv_scale );
-						int pos_y = (int)( 20f + ((float)j * 56f) * inv_scale );
-						var pos = new Vector2( pos_x, pos_y );
+						int posX = (int)( 20f + ((float)i * 56f) * invScale );
+						int posY = (int)( 20f + ((float)j * 56f) * invScale );
+						var pos = new Vector2( posX, posY );
 						Color color = Color.White * mymod.Config.BurdenedItemSlotOverlayOpacity;
 						
-						Main.spriteBatch.Draw( tex, pos, null, color, 0f, default( Vector2 ), inv_scale, SpriteEffects.None, 1f );
+						Main.spriteBatch.Draw( tex, pos, null, color, 0f, default( Vector2 ), invScale, SpriteEffects.None, 1f );
 					}
 				}
 
 				return true;
 			};
 
-			var inv_over_layer = new LegacyGameInterfaceLayer( "Encumbrance: Inventory Overlay", inv_over, InterfaceScaleType.UI );
+			var invOverLayer = new LegacyGameInterfaceLayer( "Encumbrance: Inventory Overlay", invOver, InterfaceScaleType.UI );
 
-			layers.Insert( layer_idx + 1, inv_over_layer );
+			layers.Insert( layerIdx + 1, invOverLayer );
 		}
 	}
 }

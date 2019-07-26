@@ -1,7 +1,7 @@
 ﻿using Encumbrance.Buffs;
-using HamstarHelpers.Helpers.DebugHelpers;
-using HamstarHelpers.Helpers.PlayerHelpers;
-using HamstarHelpers.Services.Promises;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Players;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -111,9 +111,9 @@ namespace Encumbrance {
 				this.IsJumping = false;
 			}
 			
-			Promises.TriggerValidatedPromise( EncumbrancePlayer.PlayerMovementPromiseValidator,
+			CustomLoadHooks.TriggerHook( EncumbrancePlayer.PlayerMovementPromiseValidator,
 				EncumbrancePlayer.PlayerMovementPromiseValidatorKey,
-				new PlayerMovementPromiseArguments { Who = this.player.whoAmI }
+				this.player.whoAmI
 			);
 		}
 	}

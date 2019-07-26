@@ -22,7 +22,7 @@ namespace Encumbrance {
 		}
 		
 
-		public override void PostHurt( bool pvp, bool quiet, double damage, int hit_direction, bool crit ) {
+		public override void PostHurt( bool pvp, bool quiet, double damage, int hitDirection, bool crit ) {
 			if( quiet ) { return; }
 
 			float dmg = (float)damage * ( crit ? 2f : 1f );
@@ -33,10 +33,10 @@ namespace Encumbrance {
 		}
 
 
-		public override bool PreKill( double damage, int hit_direction, bool pvp, ref bool play_sound, ref bool gen_gore, ref PlayerDeathReason damage_source ) {
+		public override bool PreKill( double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource ) {
 			this.RunDeathEffect();
 
-			return base.PreKill( damage, hit_direction, pvp, ref play_sound, ref gen_gore, ref damage_source );
+			return base.PreKill( damage, hitDirection, pvp, ref playSound, ref genGore, ref damageSource );
 		}
 	}
 }

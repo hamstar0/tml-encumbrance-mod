@@ -1,5 +1,4 @@
-using HamstarHelpers.Components.Config;
-using HamstarHelpers.Helpers.DebugHelpers;
+using HamstarHelpers.Helpers.TModLoader.Mods;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -14,8 +13,7 @@ namespace Encumbrance {
 
 		////////////////
 
-		public JsonConfig<EncumbranceConfigData> ConfigJson { get; private set; }
-		public EncumbranceConfigData Config { get { return this.ConfigJson.Data; } }
+		public EncumbranceConfigData Config => this.GetConfig<EncumbranceConfigData>();
 
 		public Texture2D ShadowBox = null;
 
@@ -23,36 +21,14 @@ namespace Encumbrance {
 		////////////////
 
 		public EncumbranceMod() {
-			this.Properties = new ModProperties() {
-				Autoload = true,
-				AutoloadGores = true,
-				AutoloadSounds = true
-			};
-
-			string filename = "Encumbrance Config.json";
-			this.ConfigJson = new JsonConfig<EncumbranceConfigData>( filename, ConfigurationDataBase.RelativePath, new EncumbranceConfigData() );
+			EncumbranceMod.Instance = this;
 		}
 
 		////////////////
 
 		public override void Load() {
-			EncumbranceMod.Instance = this;
-
 			if( !Main.dedServ ) {
 				this.ShadowBox = this.GetTexture( "ShadowBox" );
-			}
-
-			this.LoadConfig();
-		}
-
-		private void LoadConfig() {
-			if( !this.ConfigJson.LoadFile() ) {
-				this.ConfigJson.SaveFile();
-			}
-
-			if( this.Config.UpdateToLatestVersion() ) {
-				LogHelpers.Log( "Encumbrance updated to " + this.Version.ToString() );
-				this.ConfigJson.SaveFile();
 			}
 		}
 
@@ -64,15 +40,7 @@ namespace Encumbrance {
 		////////////////
 
 		public override object Call( params object[] args ) {
-			if( args.Length == 0 ) { throw new Exception( "Undefined call type." ); }
-
-			string call_type = args[0] as string;
-			if( args == null ) { throw new Exception( "Invalid call type." ); }
-
-			var new_args = new object[args.Length - 1];
-			Array.Copy( args, 1, new_args, 0, args.Length - 1 );
-
-			return EncumbranceAPI.Call( call_type, new_args );
+			return ModBoilerplateHelpers.HandleModCall( typeof( EncumbranceAPI ), args );
 		}
 	}
 }

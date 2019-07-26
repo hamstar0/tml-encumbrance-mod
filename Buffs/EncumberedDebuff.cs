@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Services.Promises;
+﻿using HamstarHelpers.Services.Hooks.LoadHooks;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
@@ -23,8 +23,8 @@ namespace Encumbrance.Buffs {
 			player.accRunSpeed = player.maxRunSpeed;
 			player.moveSpeed *= scale;
 
-			int max_jump = (int)( Player.jumpHeight * scale );
-			if( player.jump > max_jump ) { player.jump = max_jump; }
+			int maxJump = (int)( Player.jumpHeight * scale );
+			if( player.jump > maxJump ) { player.jump = maxJump; }
 		}
 
 
@@ -48,8 +48,8 @@ namespace Encumbrance.Buffs {
 				if( !EncumberedDebuff.HasSetPromise ) {
 					EncumberedDebuff.HasSetPromise = true;
 
-					Promises.AddValidatedPromise<PlayerMovementPromiseArguments>( EncumbrancePlayer.PlayerMovementPromiseValidator, ( args ) => {
-						Player plr = Main.player[ args.Who ];
+					CustomLoadHooks.AddHook( EncumbrancePlayer.PlayerMovementPromiseValidator, ( whoAmI ) => {
+						Player plr = Main.player[ whoAmI ];
 
 						if( plr != null && plr.active && plr.HasBuff(mytype) ) {
 							EncumberedDebuff.ApplyMovementHinderance( plr );
@@ -58,7 +58,7 @@ namespace Encumbrance.Buffs {
 					} );
 				}
 
-				Promises.AddModUnloadPromise( () => {
+				LoadHooks.AddModUnloadHook( () => {
 					EncumberedDebuff.IconTex1 = null;
 					EncumberedDebuff.IconTex2 = null;
 					EncumberedDebuff.IconTex3 = null;
@@ -69,7 +69,7 @@ namespace Encumbrance.Buffs {
 
 		////////////////
 
-		public override void Update( Player player, ref int buff_idx ) {
+		public override void Update( Player player, ref int buffIdx ) {
 			var myplayer = player.GetModPlayer<EncumbrancePlayer>();
 
 			float gauge = myplayer.GaugeEncumbrance();

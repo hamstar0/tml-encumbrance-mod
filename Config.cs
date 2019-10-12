@@ -6,6 +6,12 @@ using Terraria.ModLoader.Config;
 
 
 namespace Encumbrance {
+	class MyFloatInputElement : FloatInputElement { }
+
+
+
+
+
 	public class EncumbranceConfigData : ModConfig {
 		public override ConfigScope Mode => ConfigScope.ServerSide;
 
@@ -17,7 +23,7 @@ namespace Encumbrance {
 
 		[Range( 0f, 1f )]
 		[DefaultValue( 0.5f )]
-		[CustomModConfigItem( typeof( FloatInputElement ) )]
+		[CustomModConfigItem( typeof( MyFloatInputElement ) )]
 		public float BurdenedItemSlotOverlayOpacity = 0.5f;
 
 
@@ -99,7 +105,7 @@ namespace Encumbrance {
 
 		[Range( 0, 1f )]
 		[DefaultValue( 1f / 40f )]
-		[CustomModConfigItem( typeof( FloatInputElement ) )]
+		[CustomModConfigItem( typeof( MyFloatInputElement ) )]
 		public float EncumbrancePassiveDebuffScalePerItemSlot = 1f / 40f;
 	}
 }

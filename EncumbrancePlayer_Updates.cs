@@ -21,7 +21,7 @@ namespace Encumbrance {
 			}
 
 			if( encumbrance > 0f ) {
-				this.player.AddBuff( this.mod.BuffType<EncumberedDebuff>(), 3 );
+				this.player.AddBuff( ModContent.BuffType<EncumberedDebuff>(), 3 );
 			}
 			
 			if( this.ItemDropCooldown > 0 ) {

@@ -13,6 +13,7 @@
   <ItemGroup>
     <None Remove=".gitattributes" />
     <None Remove=".gitignore" />
+    <None Remove="Buffs\EncumberedDebuff.pdn" />
     <None Remove="desktop.ini" />
     <None Remove="icon base.pdn" />
     <None Remove="icon.pdn" />

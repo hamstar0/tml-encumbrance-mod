@@ -13,7 +13,7 @@ namespace Encumbrance {
 
 		////////////////
 
-		public EncumbranceConfigData Config => this.GetConfig<EncumbranceConfigData>();
+		public EncumbranceConfigData Config => ModContent.GetInstance<EncumbranceConfigData>();
 
 		public Texture2D ShadowBox = null;
 

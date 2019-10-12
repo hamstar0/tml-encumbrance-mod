@@ -1,4 +1,5 @@
-﻿using HamstarHelpers.Helpers.Players;
+﻿using HamstarHelpers.Classes.UI.ModConfig;
+using HamstarHelpers.Helpers.Players;
 using System;
 using System.ComponentModel;
 using Terraria.ModLoader.Config;
@@ -16,6 +17,7 @@ namespace Encumbrance {
 
 		[Range( 0f, 1f )]
 		[DefaultValue( 0.5f )]
+		[CustomModConfigItem( typeof( FloatInputElement ) )]
 		public float BurdenedItemSlotOverlayOpacity = 0.5f;
 
 
@@ -97,6 +99,7 @@ namespace Encumbrance {
 
 		[Range( 0, 1f )]
 		[DefaultValue( 1f / 40f )]
+		[CustomModConfigItem( typeof( FloatInputElement ) )]
 		public float EncumbrancePassiveDebuffScalePerItemSlot = 1f / 40f;
 	}
 }
